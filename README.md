@@ -18,3 +18,21 @@ python3 -m pip install jsonschema
 python3 scripts/validate_meal_plan.py            # all examples
 python3 scripts/validate_meal_plan.py plan.json  # one file
 ```
+
+## iOS app
+
+`SeasonBite/` is the SwiftUI app (iOS 17+). It shows today's meal: the season
+note, the Golden Plate split, a card per dish, and a detail page with in-season
+ingredients, steps marked for everyone, child or adults, and the child-safety
+notes. For now it loads the bundled sample plan and refuses any plan that
+breaks the rules.
+
+`SeasonBiteKit/` is a Swift package with the meal-plan models and the same
+rules as the Python validator, so the app can check model output itself.
+
+```sh
+brew install xcodegen
+xcodegen generate          # creates SeasonBite.xcodeproj
+open SeasonBite.xcodeproj
+swift test --package-path SeasonBiteKit
+```
