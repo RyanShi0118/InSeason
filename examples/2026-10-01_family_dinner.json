@@ -1,0 +1,487 @@
+{
+  "date": "2026-10-01",
+  "region": "Shanghai / Yangtze River Delta",
+  "season_note": "秋风起，鲈鱼肥。Early October brings the autumn crop of Liantang water bamboo, Mid-Autumn taro, fresh water caltrop and new chestnuts, while perch fattens before winter.",
+  "household": {
+    "adults": 2,
+    "children": [
+      {
+        "age_years": 4,
+        "allergies": []
+      }
+    ]
+  },
+  "golden_plate": {
+    "veg_tuber_pct": 50,
+    "protein_pct": 25,
+    "complex_carb_pct": 25
+  },
+  "dishes": [
+    {
+      "id": "scallion_perch_water_bamboo",
+      "name_zh": "葱油秋鲈鱼片蒸茭白",
+      "name_en": "Steamed Autumn Perch Fillet on Water Bamboo with Scallion Oil",
+      "flavor_pillar": "jiangnan_original",
+      "techniques": [
+        "steaming",
+        "scallion oil pour"
+      ],
+      "plate_role": [
+        "protein",
+        "veg_tuber"
+      ],
+      "seasonal_ingredients": [
+        {
+          "name_zh": "鲈鱼",
+          "name_en": "Perch (sea bass)",
+          "peak_reason": "Autumn perch fattens ahead of winter; flesh is sweet and firm in Sep to Nov.",
+          "source": "松江 / 金山 ponds"
+        },
+        {
+          "name_zh": "茭白",
+          "name_en": "Water bamboo",
+          "peak_reason": "Second (autumn) harvest of Liantang water bamboo runs Sep to Oct.",
+          "source": "青浦练塘"
+        }
+      ],
+      "ingredients": [
+        {
+          "item_zh": "鲈鱼净肉（去皮去刺）",
+          "item_en": "Perch fillet, skinned and pin-boned",
+          "amount": 300,
+          "unit": "g",
+          "role": "protein"
+        },
+        {
+          "item_zh": "茭白",
+          "item_en": "Water bamboo, sliced",
+          "amount": 200,
+          "unit": "g",
+          "role": "veg_tuber"
+        },
+        {
+          "item_zh": "小葱",
+          "item_en": "Spring onion",
+          "amount": 30,
+          "unit": "g",
+          "role": "aromatic"
+        },
+        {
+          "item_zh": "姜丝",
+          "item_en": "Ginger, julienned",
+          "amount": 10,
+          "unit": "g",
+          "role": "aromatic"
+        },
+        {
+          "item_zh": "菜籽油",
+          "item_en": "Rapeseed oil",
+          "amount": 10,
+          "unit": "ml",
+          "role": "fat"
+        },
+        {
+          "item_zh": "低钠生抽",
+          "item_en": "Low-sodium light soy sauce",
+          "amount": 8,
+          "unit": "ml",
+          "role": "seasoning"
+        }
+      ],
+      "steps": [
+        {
+          "n": 1,
+          "text_zh": "鱼片对光检查，用镊子拔净鱼刺，斜刀切成1厘米厚片。",
+          "text_en": "Check the fillet against the light, pull every pin bone with tweezers, then slice on the bias into 1 cm pieces.",
+          "duration_min": 5,
+          "portion": "shared",
+          "step_image_prompt": "close-up of tweezers lifting a fine pin bone from a pale perch fillet on a wooden board, backlit, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, 4:3 crop"
+        },
+        {
+          "n": 2,
+          "text_zh": "茭白切片铺盘底，鱼片铺上，放姜丝，水开后大火蒸6分钟。",
+          "text_en": "Lay water bamboo slices on the plate, arrange fish on top with ginger, steam over boiling water for 6 minutes.",
+          "duration_min": 8,
+          "portion": "shared",
+          "step_image_prompt": "plate of perch slices fanned over ivory water bamboo slices going into a bamboo steamer, wisps of steam, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, 4:3 crop"
+        },
+        {
+          "n": 3,
+          "text_zh": "倒掉盘中腥水，铺葱丝，淋低钠生抽，浇上烧热的菜籽油。",
+          "text_en": "Pour off the steaming liquid, top with shredded scallion, add soy, and pour over smoking-hot rapeseed oil.",
+          "duration_min": 2,
+          "portion": "shared",
+          "step_image_prompt": "hot oil being poured from a small ladle over fresh scallion threads on steamed fish, sizzling shimmer, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, 4:3 crop"
+        }
+      ],
+      "dual_prep": {
+        "applies": false
+      },
+      "child_safety": {
+        "non_spicy": true,
+        "bone_free_method": "Fillet is skinned and checked twice for pin bones by touch and against light before slicing.",
+        "sodium_mg_per_child_serving": 120,
+        "allergens": [
+          "fish",
+          "soy"
+        ]
+      },
+      "hero_image_prompt": "glossy white perch slices on ivory water bamboo, bright green scallion threads glistening with oil, a little clear soy pooling, served in celadon ceramic on a dark walnut 石库门-style table, 45-degree overhead angle, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, square 1:1 crop for an iOS recipe card"
+    },
+    {
+      "id": "taro_greens_superior_broth",
+      "name_zh": "上汤芋艿鸡毛菜",
+      "name_en": "Mid-Autumn Taro and Baby Greens in Clear Superior Broth",
+      "flavor_pillar": "cantonese_nourishing",
+      "techniques": [
+        "clear broth",
+        "blanching"
+      ],
+      "plate_role": [
+        "veg_tuber"
+      ],
+      "seasonal_ingredients": [
+        {
+          "name_zh": "芋艿",
+          "name_en": "Small taro",
+          "peak_reason": "New-crop taro is dug for Mid-Autumn; creamy and sweet in late Sep to Oct.",
+          "source": "奉贤 / 崇明"
+        },
+        {
+          "name_zh": "鸡毛菜",
+          "name_en": "Baby bok choy greens",
+          "peak_reason": "Autumn sowings are tender after the summer heat breaks.",
+          "source": "浦东 / 嘉定 vegetable bases"
+        }
+      ],
+      "ingredients": [
+        {
+          "item_zh": "小芋艿（去皮）",
+          "item_en": "Small taro, peeled",
+          "amount": 250,
+          "unit": "g",
+          "role": "veg_tuber"
+        },
+        {
+          "item_zh": "鸡毛菜",
+          "item_en": "Baby greens",
+          "amount": 250,
+          "unit": "g",
+          "role": "veg_tuber"
+        },
+        {
+          "item_zh": "无盐鸡清汤",
+          "item_en": "Unsalted clear chicken stock",
+          "amount": 500,
+          "unit": "ml",
+          "role": "seasoning"
+        },
+        {
+          "item_zh": "蒜瓣",
+          "item_en": "Garlic cloves",
+          "amount": 10,
+          "unit": "g",
+          "role": "aromatic"
+        },
+        {
+          "item_zh": "盐",
+          "item_en": "Salt",
+          "amount": 1,
+          "unit": "g",
+          "role": "seasoning"
+        }
+      ],
+      "steps": [
+        {
+          "n": 1,
+          "text_zh": "芋艿切滚刀块，与蒜瓣入清汤小火煮12分钟至软糯。",
+          "text_en": "Cut taro into chunks and simmer with garlic in the stock over low heat for 12 minutes until creamy.",
+          "duration_min": 12,
+          "portion": "shared",
+          "step_image_prompt": "small peeled taro chunks and whole garlic cloves simmering in clear golden stock in a white enamel pot, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, 4:3 crop"
+        },
+        {
+          "n": 2,
+          "text_zh": "放入鸡毛菜烫30秒，加少许盐，连汤盛入深碗。",
+          "text_en": "Add the greens for 30 seconds, season with a pinch of salt, and ladle into a deep bowl with the broth.",
+          "duration_min": 1,
+          "portion": "shared",
+          "step_image_prompt": "vivid green baby greens wilting into the taro broth, ladle lifting broth, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, 4:3 crop"
+        }
+      ],
+      "dual_prep": {
+        "applies": false
+      },
+      "child_safety": {
+        "non_spicy": true,
+        "bone_free_method": "No bones; stock is strained through a fine sieve.",
+        "sodium_mg_per_child_serving": 120,
+        "allergens": []
+      },
+      "hero_image_prompt": "deep bowl of clear golden broth with creamy taro pieces and bright jade baby greens, soft steam rising, served in celadon ceramic on a dark walnut 石库门-style table, 45-degree overhead angle, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, square 1:1 crop for an iOS recipe card"
+    },
+    {
+      "id": "golden_sour_tofu_caltrop",
+      "name_zh": "金汤菱角嫩豆腐（大人另加黄灯笼藤椒）",
+      "name_en": "Golden Sour Broth with Water Caltrop and Silken Tofu (adult chili finish)",
+      "flavor_pillar": "mild_sichuan_hunan",
+      "techniques": [
+        "golden sour broth",
+        "simmering",
+        "adult-only finish"
+      ],
+      "plate_role": [
+        "protein",
+        "veg_tuber"
+      ],
+      "seasonal_ingredients": [
+        {
+          "name_zh": "菱角",
+          "name_en": "Water caltrop",
+          "peak_reason": "Caltrop is harvested from Sep to Oct; young nuts are crisp and sweet.",
+          "source": "青浦 / 嘉兴南湖"
+        },
+        {
+          "name_zh": "南瓜",
+          "name_en": "Pumpkin",
+          "peak_reason": "Autumn-harvest pumpkin is dense and sweet; it gives the broth its gold without chili.",
+          "source": "崇明"
+        }
+      ],
+      "ingredients": [
+        {
+          "item_zh": "嫩豆腐（卤水）",
+          "item_en": "Silken tofu, brine-set",
+          "amount": 200,
+          "unit": "g",
+          "role": "protein"
+        },
+        {
+          "item_zh": "菱角肉",
+          "item_en": "Shelled water caltrop",
+          "amount": 150,
+          "unit": "g",
+          "role": "veg_tuber"
+        },
+        {
+          "item_zh": "南瓜",
+          "item_en": "Pumpkin",
+          "amount": 150,
+          "unit": "g",
+          "role": "veg_tuber"
+        },
+        {
+          "item_zh": "无盐鸡清汤",
+          "item_en": "Unsalted clear chicken stock",
+          "amount": 300,
+          "unit": "ml",
+          "role": "seasoning"
+        },
+        {
+          "item_zh": "米醋",
+          "item_en": "Rice vinegar",
+          "amount": 10,
+          "unit": "ml",
+          "role": "seasoning"
+        },
+        {
+          "item_zh": "盐",
+          "item_en": "Salt",
+          "amount": 1,
+          "unit": "g",
+          "role": "seasoning"
+        },
+        {
+          "item_zh": "黄灯笼辣椒酱",
+          "item_en": "Yellow lantern chili sauce (adult only)",
+          "amount": 8,
+          "unit": "g",
+          "role": "adult_heat"
+        },
+        {
+          "item_zh": "藤椒油",
+          "item_en": "Rattan pepper oil (adult only)",
+          "amount": 3,
+          "unit": "ml",
+          "role": "adult_heat"
+        },
+        {
+          "item_zh": "蒜酥",
+          "item_en": "Garlic crisp (adult only)",
+          "amount": 5,
+          "unit": "g",
+          "role": "aromatic"
+        }
+      ],
+      "steps": [
+        {
+          "n": 1,
+          "text_zh": "南瓜蒸软后与清汤打成金色细滑汤底。",
+          "text_en": "Steam the pumpkin until soft and blend with the stock into a smooth golden base.",
+          "duration_min": 10,
+          "portion": "shared",
+          "step_image_prompt": "bright orange pumpkin purée swirling into stock in a blender jug, golden color, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, 4:3 crop"
+        },
+        {
+          "n": 2,
+          "text_zh": "汤底煮开，下菱角和豆腐块小火煮5分钟，加米醋和少许盐。全程不放任何辣椒。",
+          "text_en": "Bring the base to a simmer, add caltrop and tofu cubes for 5 minutes, then add rice vinegar and a pinch of salt. No chili goes in the shared pot.",
+          "duration_min": 6,
+          "portion": "shared",
+          "step_image_prompt": "white silken tofu cubes and ivory caltrop nuts simmering in glossy golden broth in a clay pot, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, 4:3 crop"
+        },
+        {
+          "n": 3,
+          "text_zh": "先盛出孩子的一份。",
+          "text_en": "Ladle out the child's portion first.",
+          "duration_min": 1,
+          "portion": "child_only",
+          "step_image_prompt": "small child-size ceramic bowl being filled with mild golden tofu broth, no chili visible, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, 4:3 crop"
+        },
+        {
+          "n": 4,
+          "text_zh": "锅中余下的大人份加入黄灯笼辣椒酱，大火滚10秒即关火。",
+          "text_en": "Stir yellow lantern chili sauce into the adult portion left in the pot and boil for 10 seconds, then turn off the heat.",
+          "duration_min": 0.2,
+          "portion": "adult_only",
+          "step_image_prompt": "spoon of bright yellow chili sauce dropping into bubbling golden broth, vivid contrast, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, 4:3 crop"
+        },
+        {
+          "n": 5,
+          "text_zh": "大人碗淋藤椒油，撒蒜酥上桌。",
+          "text_en": "Drizzle rattan pepper oil over the adult bowls and scatter garlic crisp.",
+          "duration_min": 0.5,
+          "portion": "adult_only",
+          "step_image_prompt": "green rattan pepper oil drizzled over a golden sour broth bowl topped with crisp golden garlic, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, 4:3 crop"
+        }
+      ],
+      "dual_prep": {
+        "applies": true,
+        "split_point": 3,
+        "adult_finish": "Yellow lantern chili sauce boiled into the adult portion for the final 10 seconds, then rattan pepper oil and garlic crisp at the table."
+      },
+      "child_safety": {
+        "non_spicy": true,
+        "bone_free_method": "No bones; caltrop is fully shelled and cut in half so it is not a choking hazard.",
+        "sodium_mg_per_child_serving": 130,
+        "allergens": [
+          "soy"
+        ]
+      },
+      "hero_image_prompt": "two bowls side by side: a mild golden tofu and caltrop broth for a child, and an adult bowl glistening with green rattan pepper oil and garlic crisp, served in celadon ceramic on a dark walnut 石库门-style table, 45-degree overhead angle, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, square 1:1 crop for an iOS recipe card"
+    },
+    {
+      "id": "chestnut_brown_rice",
+      "name_zh": "新栗糙米饭",
+      "name_en": "New-Season Chestnut Brown Rice",
+      "flavor_pillar": "jiangnan_original",
+      "techniques": [
+        "steamed rice"
+      ],
+      "plate_role": [
+        "complex_carb"
+      ],
+      "seasonal_ingredients": [
+        {
+          "name_zh": "板栗",
+          "name_en": "Chestnut",
+          "peak_reason": "New chestnuts arrive late Sep to Oct and are at their sweetest.",
+          "source": "宜兴 / 浙江安吉"
+        }
+      ],
+      "ingredients": [
+        {
+          "item_zh": "糙米（干重，提前浸泡）",
+          "item_en": "Brown rice, dry weight, pre-soaked",
+          "amount": 120,
+          "unit": "g",
+          "role": "complex_carb"
+        },
+        {
+          "item_zh": "粳米",
+          "item_en": "Japonica rice",
+          "amount": 40,
+          "unit": "g",
+          "role": "complex_carb"
+        },
+        {
+          "item_zh": "去壳板栗",
+          "item_en": "Shelled chestnuts",
+          "amount": 100,
+          "unit": "g",
+          "role": "complex_carb"
+        }
+      ],
+      "steps": [
+        {
+          "n": 1,
+          "text_zh": "糙米浸泡2小时，与粳米、板栗同煮，按糙米模式蒸熟。",
+          "text_en": "Soak the brown rice for 2 hours, then cook with the japonica rice and chestnuts on the brown-rice setting.",
+          "duration_min": 45,
+          "portion": "shared",
+          "step_image_prompt": "open rice cooker with steaming brown rice studded with golden chestnut halves, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, 4:3 crop"
+        },
+        {
+          "n": 2,
+          "text_zh": "孩子那份把栗子压碎拌匀。",
+          "text_en": "Mash the chestnuts into the child's rice.",
+          "duration_min": 1,
+          "portion": "child_only",
+          "step_image_prompt": "small bowl of brown rice with chestnut mashed in, child-size spoon, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, 4:3 crop"
+        }
+      ],
+      "dual_prep": {
+        "applies": false
+      },
+      "child_safety": {
+        "non_spicy": true,
+        "bone_free_method": "No bones; chestnuts are mashed for the child to avoid choking.",
+        "sodium_mg_per_child_serving": 10,
+        "allergens": []
+      },
+      "hero_image_prompt": "rustic bowl of nutty brown rice studded with golden chestnut halves, a few grains scattered, served in celadon ceramic on a dark walnut 石库门-style table, 45-degree overhead angle, realistic food photography, natural soft window light, warm Shanghai home kitchen, shallow depth of field, 50mm lens, no text, no hands, square 1:1 crop for an iOS recipe card"
+    }
+  ],
+  "nutrition": {
+    "is_estimate": true,
+    "per_adult": {
+      "kcal": 650,
+      "protein_g": 38,
+      "fiber_g": 11,
+      "sat_fat_g": 3,
+      "sodium_mg": 900,
+      "calcium_mg": 280,
+      "iron_mg": 5,
+      "zinc_mg": 4,
+      "dha_mg": 200
+    },
+    "per_child": {
+      "kcal": 330,
+      "protein_g": 18,
+      "fiber_g": 5,
+      "sat_fat_g": 1.5,
+      "sodium_mg": 380,
+      "calcium_mg": 160,
+      "iron_mg": 2.5,
+      "zinc_mg": 2,
+      "dha_mg": 90
+    },
+    "child_micronutrient_sources": {
+      "calcium": [
+        "golden_sour_tofu_caltrop",
+        "taro_greens_superior_broth"
+      ],
+      "iron": [
+        "taro_greens_superior_broth",
+        "golden_sour_tofu_caltrop"
+      ],
+      "zinc": [
+        "scallion_perch_water_bamboo",
+        "chestnut_brown_rice"
+      ],
+      "dha": [
+        "scallion_perch_water_bamboo"
+      ]
+    }
+  }
+}

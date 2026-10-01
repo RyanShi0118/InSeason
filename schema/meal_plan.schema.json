@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/RyanShi0118/InSeason/schema/meal_plan.schema.json",
+  "title": "SeasonBite meal plan",
+  "description": "One family meal produced by the SeasonBite recipe engine.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["date", "region", "season_note", "household", "golden_plate", "dishes", "nutrition"],
+  "properties": {
+    "date": { "type": "string", "format": "date" },
+    "region": { "const": "Shanghai / Yangtze River Delta" },
+    "season_note": {
+      "type": "string",
+      "description": "One or two sentences on what is at peak right now and why."
+    },
+    "household": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adults", "children"],
+      "properties": {
+        "adults": { "type": "integer", "minimum": 0 },
+        "children": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["age_years"],
+            "properties": {
+              "age_years": { "type": "number", "minimum": 0.5, "maximum": 17 },
+              "allergies": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "golden_plate": {
+      "type": "object",
+      "description": "Actual share of the meal by weight. Targets are 50/25/25, each within 5 points.",
+      "additionalProperties": false,
+      "required": ["veg_tuber_pct", "protein_pct", "complex_carb_pct"],
+      "properties": {
+        "veg_tuber_pct": { "type": "number", "minimum": 45, "maximum": 55 },
+        "protein_pct": { "type": "number", "minimum": 20, "maximum": 30 },
+        "complex_carb_pct": { "type": "number", "minimum": 20, "maximum": 30 }
+      }
+    },
+    "dishes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/dish" }
+    },
+    "nutrition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["is_estimate", "per_adult", "per_child", "child_micronutrient_sources"],
+      "properties": {
+        "is_estimate": { "const": true },
+        "per_adult": { "$ref": "#/$defs/nutrients" },
+        "per_child": { "$ref": "#/$defs/nutrients" },
+        "child_micronutrient_sources": {
+          "type": "object",
+          "description": "Which dish supplies each key child nutrient, by dish id.",
+          "additionalProperties": false,
+          "required": ["calcium", "iron", "zinc", "dha"],
+          "properties": {
+            "calcium": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "iron": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "zinc": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "dha": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "nutrients": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kcal", "protein_g", "fiber_g", "sat_fat_g", "sodium_mg"],
+      "properties": {
+        "kcal": { "type": "number", "minimum": 0 },
+        "protein_g": { "type": "number", "minimum": 0 },
+        "fiber_g": { "type": "number", "minimum": 0 },
+        "sat_fat_g": { "type": "number", "minimum": 0 },
+        "sodium_mg": { "type": "number", "minimum": 0 },
+        "calcium_mg": { "type": "number", "minimum": 0 },
+        "iron_mg": { "type": "number", "minimum": 0 },
+        "zinc_mg": { "type": "number", "minimum": 0 },
+        "dha_mg": { "type": "number", "minimum": 0 }
+      }
+    },
+    "dish": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "name_zh", "name_en", "flavor_pillar", "techniques", "plate_role",
+        "seasonal_ingredients", "ingredients", "steps", "dual_prep",
+        "child_safety", "hero_image_prompt"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+        "name_zh": { "type": "string" },
+        "name_en": { "type": "string" },
+        "flavor_pillar": { "enum": ["jiangnan_original", "cantonese_nourishing", "mild_sichuan_hunan"] },
+        "techniques": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "plate_role": {
+          "type": "array",
+          "items": { "enum": ["veg_tuber", "protein", "complex_carb"] },
+          "minItems": 1
+        },
+        "seasonal_ingredients": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name_zh", "name_en", "peak_reason", "source"],
+            "properties": {
+              "name_zh": { "type": "string" },
+              "name_en": { "type": "string" },
+              "peak_reason": { "type": "string" },
+              "source": { "type": "string" }
+            }
+          }
+        },
+        "ingredients": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["item_zh", "item_en", "amount", "unit", "role"],
+            "properties": {
+              "item_zh": { "type": "string" },
+              "item_en": { "type": "string" },
+              "amount": { "type": "number", "exclusiveMinimum": 0 },
+              "unit": { "enum": ["g", "ml", "piece"] },
+              "role": { "enum": ["veg_tuber", "protein", "complex_carb", "aromatic", "fat", "seasoning", "adult_heat"] }
+            }
+          }
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["n", "text_zh", "text_en", "duration_min", "portion", "step_image_prompt"],
+            "properties": {
+              "n": { "type": "integer", "minimum": 1 },
+              "text_zh": { "type": "string" },
+              "text_en": { "type": "string" },
+              "duration_min": { "type": "number", "minimum": 0 },
+              "portion": { "enum": ["shared", "child_only", "adult_only"] },
+              "step_image_prompt": { "type": "string", "minLength": 40 }
+            }
+          }
+        },
+        "dual_prep": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["applies"],
+          "properties": {
+            "applies": { "type": "boolean" },
+            "split_point": { "type": "integer", "minimum": 1, "description": "Step number where the child portion is plated." },
+            "adult_finish": { "type": "string", "description": "What heat is added to the adult portion, and when." }
+          },
+          "if": { "properties": { "applies": { "const": true } } },
+          "then": { "required": ["split_point", "adult_finish"] }
+        },
+        "child_safety": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["non_spicy", "bone_free_method", "sodium_mg_per_child_serving", "allergens"],
+          "properties": {
+            "non_spicy": { "const": true },
+            "bone_free_method": { "type": "string" },
+            "sodium_mg_per_child_serving": { "type": "number", "minimum": 0 },
+            "allergens": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "hero_image_prompt": { "type": "string", "minLength": 60 }
+      },
+      "if": { "properties": { "flavor_pillar": { "const": "mild_sichuan_hunan" } } },
+      "then": { "properties": { "dual_prep": { "properties": { "applies": { "const": true } } } } }
+    }
+  }
+}
