@@ -16,10 +16,10 @@ final class FakeTransport: HTTPTransport, @unchecked Sendable {
     }
 
     func send(_ request: URLRequest) async throws -> (Data, HTTPURLResponse) {
-        lock.lock()
-        defer { lock.unlock() }
-        requests.append(request)
-        let (status, data) = responses.removeFirst()
+        let (status, data) = lock.withLock {
+            requests.append(request)
+            return responses.removeFirst()
+        }
         let response = HTTPURLResponse(url: request.url!, statusCode: status, httpVersion: nil, headerFields: nil)!
         return (data, response)
     }
