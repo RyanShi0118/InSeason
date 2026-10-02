@@ -8,10 +8,9 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT / "server"))
+from seasonbite_rules import validate_plan
 
-from seasonbite_engine.validation import validate_plan  # noqa: E402
+ROOT = Path(__file__).resolve().parent.parent
 
 
 def main(argv):

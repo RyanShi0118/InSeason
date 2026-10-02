@@ -3,11 +3,16 @@ import SwiftUI
 
 struct DishDetailView: View {
     let dish: Dish
+    @Environment(MealStore.self) private var store
+
+    private var hasAllStepPhotos: Bool {
+        dish.steps.allSatisfy { store.images[MealStore.stepKey(dish, $0)] != nil }
+    }
 
     var body: some View {
         List {
             Section {
-                HeroPlaceholder(pillar: dish.flavorPillar, height: 220)
+                DishPhoto(data: store.images[MealStore.heroKey(dish)], pillar: dish.flavorPillar, height: 260)
                     .listRowInsets(EdgeInsets())
                 VStack(alignment: .leading, spacing: 4) {
                     Text(dish.nameEn)
@@ -51,8 +56,16 @@ struct DishDetailView: View {
             }
 
             Section {
+                if !hasAllStepPhotos && !store.isSample {
+                    Button {
+                        Task { await store.drawStepPhotos(for: dish) }
+                    } label: {
+                        Label("Draw step photos with Qwen", systemImage: "photo.on.rectangle")
+                    }
+                    .disabled(store.isBusy)
+                }
                 ForEach(dish.steps) { step in
-                    StepRow(step: step)
+                    StepRow(step: step, photo: store.images[MealStore.stepKey(dish, step)])
                     if dish.dualPrep.applies, step.n == dish.dualPrep.splitPoint {
                         Label("Child portion is plated. Heat goes in only after this.", systemImage: "checkmark.shield.fill")
                             .font(.caption.weight(.semibold))
@@ -93,8 +106,19 @@ struct DishDetailView: View {
 
 private struct StepRow: View {
     let step: Step
+    let photo: Data?
 
     var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            if photo != nil {
+                DishPhoto(data: photo, pillar: .jiangnanOriginal, height: 180)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            }
+            content
+        }
+    }
+
+    private var content: some View {
         HStack(alignment: .top, spacing: 12) {
             Text("\(step.n)")
                 .font(.headline)

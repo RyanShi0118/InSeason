@@ -15,6 +15,10 @@ targets:
       - path: SeasonBite
       - path: examples/2026-10-01_family_dinner.json
         buildPhase: resources
+      - path: prompts/seasonbite_chef_system.md
+        buildPhase: resources
+      - path: schema/meal_plan.schema.json
+        buildPhase: resources
     dependencies:
       - package: SeasonBiteKit
         product: SeasonBiteKit

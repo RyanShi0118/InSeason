@@ -11,45 +11,40 @@ cooked so that young children and adults can eat from the same pots.
 | [`prompts/seasonbite_chef_system.md`](prompts/seasonbite_chef_system.md) | System prompt for the dietitian/chef model: seasonality, the Tri-Flavor System, the dual-prep rule, Golden Plate ratio, child and adult nutrition rules, photo prompts |
 | [`schema/meal_plan.schema.json`](schema/meal_plan.schema.json) | JSON Schema every generated meal plan must match |
 | [`examples/`](examples/) | Hand-written sample plans |
-| [`scripts/validate_meal_plan.py`](scripts/validate_meal_plan.py) | Checks a plan against the schema and the dual-prep step order |
+| [`scripts/validate_meal_plan.py`](scripts/validate_meal_plan.py) | Checks a plan against the schema and the SeasonBite rules (`scripts/seasonbite_rules.py`) |
 
 ```sh
-python3 -m pip install -r server/requirements-dev.txt
+python3 -m pip install jsonschema pytest
 python3 scripts/validate_meal_plan.py            # all examples
 python3 scripts/validate_meal_plan.py plan.json  # one file
-```
-
-### Recipe engine server
-
-`server/` is a small FastAPI service the app will call. It sends the system
-prompt and schema to Claude (`claude-opus-5-5`), parses the reply, and checks
-it with the same rules. If the reply breaks a rule, the model gets the list of
-problems and one chance to fix them; otherwise the request fails with a 502
-and the errors. The Anthropic API key lives only on this server.
-
-```sh
-export ANTHROPIC_API_KEY=...            # never ship this in the app
-export SEASONBITE_APP_TOKEN=...         # optional: require this bearer token from the app
-uvicorn seasonbite_engine.api:app --app-dir server
-curl -X POST localhost:8000/v1/meal-plans -H 'Content-Type: application/json' \
-  -d '{"date": "2026-10-02", "household": {"adults": 2, "children": [{"age_years": 4}]}}'
-python3 -m pytest server                # tests use a fake model client, no API calls
+python3 -m pytest scripts                         # rules tests
 ```
 
 ## iOS app
 
-`SeasonBite/` is the SwiftUI app (iOS 17+). It shows today's meal: the season
-note, the Golden Plate split, a card per dish, and a detail page with in-season
-ingredients, steps marked for everyone, child or adults, and the child-safety
-notes. For now it loads the bundled sample plan and refuses any plan that
-breaks the rules.
+`SeasonBite/` is the SwiftUI app (iOS 17+), built for personal use. It talks to
+two providers directly with your own API keys, which it keeps in the iPhone
+Keychain:
 
-`SeasonBiteKit/` is a Swift package with the meal-plan models and the same
-rules as the recipe engine server, so the app can check model output itself.
+- **DeepSeek** (`deepseek-v4-pro` by default) writes the meal plan. The app sends
+  the system prompt and schema, asks for JSON, and checks the reply against the
+  SeasonBite rules. If a rule is broken, DeepSeek gets the list of problems and
+  one more try; otherwise the app shows the error and keeps the old plan.
+- **Qwen-Image** (`qwen-image-2.0` by default, Model Studio Beijing) draws a
+  square photo for each dish card from `hero_image_prompt`. Step photos
+  (`step_image_prompt`) are drawn on request from a dish's page. Photos are
+  saved on the phone, since Qwen's links expire after 24 hours.
+
+Tap **Plan today's dinner** to plan for today's date in Shanghai and the
+household set in Settings. Until then the app shows the bundled 1 October
+sample.
+
+`SeasonBiteKit/` is a Swift package with the meal-plan models, the rules (the
+same ones as `scripts/seasonbite_rules.py`), and the DeepSeek and Qwen clients.
 
 ```sh
 brew install xcodegen
 xcodegen generate          # creates SeasonBite.xcodeproj
 open SeasonBite.xcodeproj
-swift test --package-path SeasonBiteKit
+swift test --package-path SeasonBiteKit   # uses a fake HTTP client, no API calls
 ```

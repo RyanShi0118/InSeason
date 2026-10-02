@@ -16,16 +16,34 @@ public struct MealPlan: Codable, Hashable, Sendable {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return try decoder.decode(MealPlan.self, from: data)
     }
+
+    /// snake_case JSON, the same shape the schema describes.
+    public func encoded() throws -> Data {
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        return try encoder.encode(self)
+    }
 }
 
 public struct Household: Codable, Hashable, Sendable {
     public var adults: Int
     public var children: [Child]
+
+    public init(adults: Int, children: [Child]) {
+        self.adults = adults
+        self.children = children
+    }
 }
 
 public struct Child: Codable, Hashable, Sendable {
     public var ageYears: Double
     public var allergies: [String]?
+
+    public init(ageYears: Double, allergies: [String]? = nil) {
+        self.ageYears = ageYears
+        self.allergies = allergies
+    }
 }
 
 /// Share of the meal by weight. Targets are 50 / 25 / 25.

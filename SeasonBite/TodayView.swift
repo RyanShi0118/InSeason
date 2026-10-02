@@ -3,15 +3,18 @@ import SwiftUI
 
 struct TodayView: View {
     let plan: MealPlan
+    @Environment(MealStore.self) private var store
+    @State private var showingSettings = false
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
+                PlanControls(showingSettings: $showingSettings)
                 header
                 GoldenPlateBar(plate: plan.goldenPlate)
                 ForEach(plan.dishes) { dish in
                     NavigationLink(value: dish) {
-                        DishCard(dish: dish)
+                        DishCard(dish: dish, photo: store.images[MealStore.heroKey(dish)])
                     }
                     .buttonStyle(.plain)
                 }
@@ -22,6 +25,18 @@ struct TodayView: View {
         .navigationTitle("知时食")
         .navigationDestination(for: Dish.self) { dish in
             DishDetailView(dish: dish)
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showingSettings = true
+                } label: {
+                    Label("Settings", systemImage: "gearshape")
+                }
+            }
+        }
+        .sheet(isPresented: $showingSettings) {
+            SettingsView()
         }
     }
 
@@ -109,10 +124,11 @@ private struct DotLabelStyle: LabelStyle {
 
 struct DishCard: View {
     let dish: Dish
+    let photo: Data?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HeroPlaceholder(pillar: dish.flavorPillar)
+            DishPhoto(data: photo, pillar: dish.flavorPillar, height: 200)
             VStack(alignment: .leading, spacing: 8) {
                 Label(dish.flavorPillar.nameZh, systemImage: dish.flavorPillar.symbol)
                     .font(.caption.weight(.semibold))
@@ -173,6 +189,65 @@ struct NutritionSummary: View {
             if !household.children.isEmpty {
                 Text("\(formatAmount(nutrition.perChild[keyPath: key])) \(unit)")
             }
+        }
+    }
+}
+
+/// The "plan today's dinner" button, progress while DeepSeek and Qwen work, and any error.
+struct PlanControls: View {
+    @Binding var showingSettings: Bool
+    @Environment(MealStore.self) private var store
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            if store.isSample {
+                Text("This is a sample dinner. Add your API keys in Settings, then plan today's.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+            Button {
+                Task { await store.planToday() }
+            } label: {
+                Label("Plan today's dinner", systemImage: "sparkles")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .disabled(store.isBusy)
+
+            switch store.phase {
+            case .idle:
+                EmptyView()
+            case .planning:
+                ProgressRow(text: "DeepSeek is planning dinner. This can take a minute or two.")
+            case .drawing(let done, let total):
+                ProgressRow(text: "Qwen is drawing photos (\(done) of \(total))")
+            }
+
+            if let message = store.errorMessage {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(message)
+                        .font(.footnote)
+                        .foregroundStyle(.red)
+                    if message.contains("Settings") {
+                        Button("Open Settings") { showingSettings = true }
+                            .font(.footnote.weight(.semibold))
+                    }
+                }
+            }
+        }
+    }
+}
+
+private struct ProgressRow: View {
+    let text: String
+
+    var body: some View {
+        HStack(spacing: 8) {
+            ProgressView()
+            Text(text)
+                .font(.footnote)
+                .foregroundStyle(.secondary)
         }
     }
 }

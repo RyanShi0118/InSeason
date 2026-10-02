@@ -9,7 +9,7 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = REPO_ROOT / "schema" / "meal_plan.schema.json"
 
 GOLDEN_PLATE_TARGET = {"veg_tuber_pct": 50, "protein_pct": 25, "complex_carb_pct": 25}

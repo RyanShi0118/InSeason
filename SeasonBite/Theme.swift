@@ -1,5 +1,6 @@
 import SeasonBiteKit
 import SwiftUI
+import UIKit
 
 extension FlavorPillar {
     var color: Color {
@@ -37,22 +38,34 @@ extension Step.Portion {
     }
 }
 
-/// Stand-in for the generated hero photo until image generation is wired up.
-struct HeroPlaceholder: View {
+/// A Qwen photo when one has been drawn, otherwise a tinted placeholder in the dish's flavor color.
+struct DishPhoto: View {
+    let data: Data?
     let pillar: FlavorPillar
     var height: CGFloat = 160
 
     var body: some View {
-        LinearGradient(
-            colors: [pillar.color.opacity(0.55), pillar.color.opacity(0.15)],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
-        .frame(height: height)
-        .overlay {
-            Image(systemName: "fork.knife")
-                .font(.system(size: height / 4))
-                .foregroundStyle(.white.opacity(0.8))
+        if let data, let image = UIImage(data: data) {
+            Color.clear
+                .frame(height: height)
+                .overlay {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                }
+                .clipped()
+        } else {
+            LinearGradient(
+                colors: [pillar.color.opacity(0.55), pillar.color.opacity(0.15)],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .frame(height: height)
+            .overlay {
+                Image(systemName: "fork.knife")
+                    .font(.system(size: height / 4))
+                    .foregroundStyle(.white.opacity(0.8))
+            }
         }
     }
 }

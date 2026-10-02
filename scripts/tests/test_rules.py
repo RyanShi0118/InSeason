@@ -1,6 +1,6 @@
 import copy
 
-from seasonbite_engine.validation import validate_plan
+from seasonbite_rules import validate_plan
 
 
 def test_sample_passes(sample_plan):
